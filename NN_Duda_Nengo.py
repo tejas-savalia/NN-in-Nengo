@@ -53,3 +53,10 @@ with model:
     nengo.Connection(Hidden_Node_1, Output_Node_2, transform = weights2[0][1], function = sigmoid)
     nengo.Connection(Hidden_Node_2, Output_Node_2, transform = weights2[1][1], function = sigmoid)
 
+    Ouptput_Probe_1 = nengo.Probe(Output_Node_1, synapse = 0.01)
+    Ouptput_Probe_2 = nengo.Probe(Output_Node_2, synapse = 0.01)
+    
+with nengo.Simulator(model) as sim:
+    sim.run(0.3)
+Out_1 = sim.data[Output_Node_1]
+Out_2 = sim.data[Output_Node_2]
